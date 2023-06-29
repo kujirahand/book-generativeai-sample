@@ -1,0 +1,41 @@
+<html><body>
+    <style>
+        .red { color: red; margin: 0.5em; }
+        .blue { color: blue; margin: 0.5em;}
+    </style>
+    <h1>会話ゲーム</h1>
+    <!-- 画面左 イラスト画像を表示 -->
+    <div style="float:left"><img src="/girl.png" width="200"></div>
+    <!-- 画面右 会話のやりとりを表示 -->
+    <div style="float:left">
+        <!-- 会話の履歴 -->
+        <div id="chat" style="width:400px"></div>
+        <!-- 入力ボックスと送信ボタン-->
+        <div style="margin:0.5em;"><input type="text" id="in_text" size="50">
+            <input type="button" value="発言" onclick="send()"></div>
+    </div>
+    <script>
+        function tohtml(s) {
+            s = '' + s // 文字列にあるHTMLの特殊文字をエスケープする
+            return s.replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        }
+        // 発言ボタンを押した時の処理 --- (*1)
+        async function send() {
+            const in_text = document.getElementById('in_text');
+            const chat = document.getElementById('chat');
+            const msg = in_text.value; // 発言内容を得る --- (*2)
+            in_text.value = ''; // 入力欄を空にする
+            chat.innerHTML += '<p class="blue">あなた: ' + tohtml(msg) + '</p>';
+            // サーバーに発言内容を送信する --- (*3)
+            const f = await fetch('/send?msg=' + encodeURI(msg));
+            const res = await f.json();
+            console.log(res)
+            // 返信を表示する --- (*4)
+            const answer = tohtml(res['答え']);
+            const fav = res['好感度'];
+            chat.innerHTML += `<p class="red">エリ: ${answer}(好感度:${fav})</p>`;
+            in_text.focus();
+        }
+    </script>
+</body></html>
