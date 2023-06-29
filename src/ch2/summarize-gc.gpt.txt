@@ -1,0 +1,3 @@
+次の文を要約してください。
+
+https://ja.wikipedia.org/wiki/ガベージコレクション

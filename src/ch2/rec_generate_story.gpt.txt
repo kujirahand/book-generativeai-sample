@@ -1,0 +1,18 @@
+以下の処理をシミュレーションして、繰り返し物語を創作してください。
+なお、`評価, 物語`の形式で出力してください。
+
+```
+generate_story("幸せな気分になる話")
+
+def generate_story(kind):
+    # 100字以下の短い物語を作る
+    story = generate_short_text(kind)
+    # 物語を1から10で評価する
+    evaluation = evaluate_story(story)
+    # 結果を表示する
+    print(evaluation, story)
+    # 再帰的に繰り返す
+    if evaluation <= 8:
+        generate_story(kind)
+    return story
+```

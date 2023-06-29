@@ -1,0 +1,22 @@
+以下の処理をシミュレーションして物語を作ってください。
+
+```
+generate_story("幸せな気分になる話")
+
+def generate_story(kind):
+    # 短い物語を作る
+    story = generate_short_text(kind)
+    # 物語の改善点を指摘する
+    review = review_text(story)
+    # 改善点を元にして物語を改善する
+    story = update_text(story, review)
+    # 物語を1から10で評価する
+    evaluation = evaluate_story(story)
+    # 経過を表示する
+    print('--- 評価', evaluation, review)
+    print(story)
+    # 納得がいくまで再帰的に繰り返す
+    if evaluation < 8:
+        generate_story(kind)
+    return story
+```
