@@ -1,0 +1,55 @@
+<!DOCTYPE html><html><head>
+    <title>ToDo App</title>
+    <script>
+        // サーバーからタスクリストを取得して表示する関数 --- (*1)
+        function getTasks() {
+            // サーバーの'/tasks'にリクエストを送信し、タスクリストを取得 --- (*2)
+            fetch('/tasks')
+            .then(response => response.json())
+            .then(data => {
+                const taskList = document.getElementById('task-list');
+                taskList.innerHTML = ''; // タスクリストをクリア
+                // タスクリスト内の各タスクに対して、リストアイテムを作成して追加 --- (*3)
+                data.forEach(task => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = task;
+                    taskList.appendChild(listItem);
+                });
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+        // タスクを追加する関数 --- (*4)
+        function addTask() {
+            const taskInput = document.getElementById('task-input');
+            const task = taskInput.value;
+            // タスクが空でない場合のみ追加する
+            if (task.trim() !== '') {
+                // サーバーの '/tasks' に POSTを送信してタスクを追加 --- (*5)
+                fetch('/tasks', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ task })
+                })
+                .then(response => {
+                    if (response.ok) {
+                        taskInput.value = ''; // 入力フィールドをクリア
+                        getTasks(); // タスクリストを再読み込み
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+            }
+        }
+    </script>
+</head>
+
+<!-- ToDOの画面 --- (*6) -->
+<body onload="getTasks()">
+    <h1>ToDo App</h1>
+    <ul id="task-list"></ul> <!-- タスクリストを表示するための空のリスト -->
+    <input type="text" id="task-input"> <!-- タスクを入力するための入力フィールド -->
+    <button onclick="addTask()">Add Task</button> <!-- タスクを追加するボタン -->
+</body>
+</html>

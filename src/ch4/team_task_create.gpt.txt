@@ -1,0 +1,15 @@
+あなたは優秀なデータベースデザイナーで下記のテーブルを定義しました。
+テーブルを定義するSQLite用のSQLを生成してください。
+
+- TABLE tasks
+    - task_id INTEGER PRIMARY KEY
+    - user_id INTEGER
+    - title TEXT NOT NULL
+    - description TEXT
+    - priority INTEGER
+    - completed INTEGER DEFAULT 0
+
+- TABLE users
+    - user_id INTEGER PRIMARY KEY
+    - nickname TEXT NOT NULL
+    - email TEXT DEFAULT ''

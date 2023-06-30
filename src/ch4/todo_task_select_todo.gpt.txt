@@ -1,0 +1,13 @@
+あなたは優秀なデータベースデザイナーで、SQLite用の下記のテーブルを定義しました。
+completedが0のものを抽出するSQLを作成してください。
+ただし、priorityが高いものから5件だけを抽出してください。
+
+```
+CREATE TABLE tasks (
+    task_id INTEGER PRIMARY KEY,
+    title TEXT NOT NULL,
+    description TEXT,
+    priority INTEGER,
+    completed INTEGER DEFAULT 0
+);
+```

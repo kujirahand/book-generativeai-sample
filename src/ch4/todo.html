@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ToDoリスト</title>
+</head>
+<body>
+    <h1>ToDoリスト</h1>
+    <input type="text" id="taskInput" placeholder="新しいタスク">
+    <button onclick="addTask()">追加</button>
+    <ul id="taskList"></ul>
+
+    <script>
+        var taskList = document.getElementById("taskList");
+        var taskInput = document.getElementById("taskInput");
+
+        function addTask() {
+            var task = taskInput.value;
+            if (task.trim() !== "") {
+                var listItem = document.createElement("li");
+                listItem.innerHTML = task;
+                taskList.appendChild(listItem);
+                taskInput.value = "";
+            }
+        }
+
+        taskList.addEventListener("click", function(event) {
+            if (event.target.tagName === "LI") {
+                event.target.parentNode.removeChild(event.target);
+            }
+        });
+    </script>
+</body>
+</html>

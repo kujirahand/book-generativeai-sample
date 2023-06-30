@@ -1,0 +1,18 @@
+あなたは、優秀なデータベースデザイナーです。
+次のようなテーブルをSQLで設計しました。
+指定したユーザーのタスク一覧をユーザーの名前入りで抽出するSQLite用のSQLを作成してください。
+
+```
+CREATE TABLE tasks (
+  id INTEGER PRIMARY KEY, -- タスクの一意の識別子
+  title TEXT NOT NULL, -- タスクのタイトル
+  description TEXT, -- タスクの詳細な説明
+  user_id INTEGER, -- タスクを担当するユーザーのID
+  FOREIGN KEY (user_id) REFERENCES users(id) -- usersテーブルのidカラムと関連付け
+);
+CREATE TABLE users (
+  id INTEGER PRIMARY KEY, -- ユーザーの一意の識別子
+  name TEXT NOT NULL, -- ユーザーの名前
+  email TEXT UNIQUE -- ユーザーのメールアドレス（一意制約あり）
+);
+```

@@ -1,0 +1,11 @@
+あなたはソフトウェアの優秀なテスターです。
+以下のテーブルに対する日本語のサンプルデータを20件生成してSQLで出力してください。
+```
+CREATE TABLE tasks (
+    task_id INTEGER PRIMARY KEY,
+    title TEXT NOT NULL,
+    description TEXT,
+    priority INTEGER,
+    completed INTEGER DEFAULT 0
+);
+```
