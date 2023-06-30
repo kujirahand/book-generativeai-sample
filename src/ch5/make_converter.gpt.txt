@@ -1,0 +1,12 @@
+あなたはPythonプログラマーです。
+2つのカラムを持つCSVファイルを読んでJSONL形式のファイルを作成したいです。
+標準ライブラリだけを使ってプログラムを完成させてください。
+### 仕様
+・入力ファイル: ninja_corpus.csv
+・出力ファイル: ninja_corpus.jsonl
+### 出力形式
+```
+{"prompt":"1列名","completion":"2列名"}
+{"prompt":"1列名","completion":"2列名"}
+{"prompt":"1列名","completion":"2列名"}
+```

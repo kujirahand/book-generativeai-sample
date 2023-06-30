@@ -1,0 +1,30 @@
+!pip install transformers sentencepiece
+
+# モデルの設定
+tokenizer_name = 'rinna/japanese-gpt-neox-3.6b'
+model_name = 'rinna/japanese-gpt-neox-3.6b'
+max_tokens=64 # この値を大きくすると長文を出力できる
+min_tokens=64
+
+import torch
+from transformers import AutoTokenizer, AutoModelForCausalLM
+# モデルなどの読み込み
+tokenizer = AutoTokenizer.from_pretrained(tokenizer_name,use_fast=False)
+model = AutoModelForCausalLM.from_pretrained(model_name).to("cuda")
+# プロンプトを実行
+def exec_prompt(prompt):
+    token_ids = tokenizer.encode(prompt, add_special_tokens=False, return_tensors="pt")
+    with torch.no_grad():
+        output_ids = model.generate(
+            token_ids.to(model.device),
+            max_new_tokens=max_tokens,
+            min_new_tokens=min_tokens,
+            do_sample=True,
+            temperature=0.8,
+            pad_token_id=tokenizer.pad_token_id,
+            bos_token_id=tokenizer.bos_token_id,
+            eos_token_id=tokenizer.eos_token_id
+        )
+    # 結果を表示
+    output = tokenizer.decode(output_ids.tolist()[0])
+    return output

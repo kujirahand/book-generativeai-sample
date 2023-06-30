@@ -1,0 +1,9 @@
+10円玉がa枚、50円玉がb枚、100円玉がc枚、500円玉がd枚あります。 
+total円を支払うための組合せを一つ返す関数calc_coin(total, a, b, c, d)があります。 
+なおコイン枚数が最小枚数の組合せを返します。 pytestでテストする関数test_calc_coinを作ってください。
+
+以下のプログラムの続きを作ってください。
+
+from calc_coin import calc_coin
+def test_calc_coin():
+

@@ -1,0 +1,3 @@
+! git clone https://github.com/ggerganov/llama.cpp
+! cd llama.cpp && make
+! wget https://huggingface.co/vicuna/ggml-vicuna-7b-1.1/resolve/main/ggml-vic7b-q5_1.bin
