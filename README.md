@@ -15,6 +15,11 @@
   - ZIP形式で圧縮されているので、解凍してからご利用ください。
   - 使い方は、書籍巻末の Appedix1 に詳しく書かれています。
 
+## 注意点 (2024/01/08)
+
+- ChatGPTのシステムアップデートにより、書籍内で言及していた「`ChatGPT(モデルGPT-4)`」が、「`ChatGPT Classic`」に変更になっています。画面左上の「探索する」から「`ChatGPT Classic` - The latest version of GPT-4 with no additional capabilities.」を選んでご利用ください！！
+
+
 ## 書影
 
 ![書影](./book_cover.png)
